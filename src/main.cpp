@@ -13,10 +13,12 @@ int main(int argc, char **argv) {
 //    cout << "Neuron activated: " << neuron_->get_activated_value() << endl;
 //    cout << "Neuron derivative: " << neuron_->get_derivative_activated_value() << endl;
 //    Layer *layer_ = new Layer(10);
-    Matrix *matrix = new Matrix(4,4);
+    Matrix *matrix = new Matrix(4,3);
     matrix->print_matrix_to_stdout();
-    srand((unsigned) time(NULL));
-    cout << (double) rand() / RAND_MAX << endl;
+    cout << "__________________________________________" << endl;
+    Matrix *matrix_traspose = matrix->transpose_matrix();
+    matrix_traspose->print_matrix_to_stdout();
+//    matrix->print_transpose_matrix_to_stdout();
 
     return 0;
 }

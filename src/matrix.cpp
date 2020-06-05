@@ -4,7 +4,24 @@
 
 using namespace std;
 
+
+//void Matrix::set_value(int row_index, int col_index, int insert_value) {
+//    this->values.at(row_index).at(col_index) = insert_value;
+//}
+
+Matrix *Matrix::transpose_matrix() {
+    Matrix *matrix = new Matrix(this->num_cols, this->num_rows);
+    for (int row = 0; row < num_rows; row++) {
+        for (int col = 0; col < num_cols; col++) {
+            matrix->set_value(col, row, this->get_value(row, col));
+        }
+    }
+    return matrix;
+}
+
+
 double Matrix::random_numbers_generator() {
+//    srand((unsigned) time(NULL));
     return (double) rand() / RAND_MAX;
 //    random_device random_dev;
 //    mt19937 gen(random_dev());
@@ -21,6 +38,7 @@ void Matrix::print_matrix_to_stdout() {
         cout << endl;
     }
 }
+
 
 Matrix::Matrix(int num_rows, int num_cols) {
     this->num_rows = num_rows;
