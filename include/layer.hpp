@@ -7,20 +7,17 @@
 
 using namespace std;
 
-
 class Layer {
 public:
-
     Layer(int size);
-    void set_value_(int index, double value);
+    void set_value(int index, double value_);
 
     Matrix *flatten_matrix_values();
     Matrix *flatten_matrix_activated_values();
     Matrix *flatten_matrix_derivative_values();
 private:
     int size;
-    vector<NeuronUnit *> neurons;
+    vector<Neuron *> neurons;
 };
-
 
 #endif

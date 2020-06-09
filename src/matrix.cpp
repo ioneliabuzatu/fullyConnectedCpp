@@ -5,10 +5,6 @@
 using namespace std;
 
 
-//void Matrix::set_value(int row_index, int col_index, int insert_value) {
-//    this->values.at(row_index).at(col_index) = insert_value;
-//}
-
 Matrix *Matrix::transpose_matrix() {
     Matrix *matrix = new Matrix(this->num_cols, this->num_rows);
     for (int row = 0; row < num_rows; row++) {

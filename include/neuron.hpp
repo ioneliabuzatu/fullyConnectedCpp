@@ -5,10 +5,11 @@
 
 using namespace std;
 
-class NeuronUnit {
+class Neuron {
 public:
 
-    NeuronUnit(double value);
+    Neuron(double value);
+    void set_value(double val);
 
     void activate_with_sigma_function(); // f(x) = x/(1+|x|)
     void derivative(); // f'(x) = f(x) * (1-f(x))
