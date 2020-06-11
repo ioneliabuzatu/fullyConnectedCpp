@@ -2,6 +2,7 @@
 #define _LAYER_HPP_
 
 #include <iostream>
+#include <vector>
 #include "../include/neuron.hpp"
 #include "../include/matrix.hpp"
 
@@ -15,6 +16,10 @@ public:
     Matrix *flatten_matrix_values();
     Matrix *flatten_matrix_activated_values();
     Matrix *flatten_matrix_derivative_values();
+
+    vector<Neuron *> get_neurons() {return this->neurons;};
+    void set_neurons(vector<Neuron *> neurons) {this->neurons = neurons;};
+
 private:
     int size;
     vector<Neuron *> neurons;
