@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
     srand((unsigned) time(NULL));
 
     cout << "\n_____________________ Neuron Unit Example _____________________" << endl;
-    Neuron *neuron_ = new Neuron(999.9);
+    Neuron *neuron_ = new Neuron(0.8);
     cout << "Neuron value: " << neuron_->get_value() << endl;
     cout << "Neuron activated: " << neuron_->get_activated_value() << endl;
     cout << "Neuron derivative: " << neuron_->get_derivative_activated_value() << "\n" << endl;
@@ -38,6 +38,11 @@ int main(int argc, char **argv) {
     FC *model = new FC(architecture);
     model->set_input(dummy_input);
     model->print_model_to_stdout();
+    model->feed_forward_move();
+
+    cout <<"\n----------------- Model after first forward pass -------------------" << endl;
+    model->print_model_to_stdout();
+
 
     return 0;
 }

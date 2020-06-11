@@ -4,10 +4,9 @@
 utils::Matrix_multiplication::Matrix_multiplication(Matrix *matrix_a, Matrix *matrix_b) {
     this->matrix_a = matrix_a;
     this->matrix_b = matrix_b;
-    this->matrix_c = matrix_c;
 
     if (matrix_a->get_num_cols() != matrix_b->get_num_rows()) {
-        cerr << "Matrices shape don't match!  [a_col,a_row] and [b_col,b_row] where a_row == b_col" << enld;
+        cerr << "Matrices shape don't match!  [a_col,a_row] and [b_col,b_row] where a_row == b_col" << endl;
         assert(false);
     }
     this->matrix_c = new Matrix(matrix_a->get_num_rows(), matrix_b->get_num_cols());
@@ -23,6 +22,7 @@ Matrix *utils::Matrix_multiplication::execute() {
             }
         }
     }
+    return this->matrix_c;
 }
 
 

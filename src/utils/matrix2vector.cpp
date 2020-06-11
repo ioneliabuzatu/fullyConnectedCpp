@@ -12,4 +12,5 @@ vector<double> utils::Matrix_2_vector::execute() {
             output_product.push_back(matrix_a->get_value(row, col));
         }
     }
+    return output_product;
 }

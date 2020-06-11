@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "../matrix.hpp"
+#include <assert.h>
 
 using namespace std;
 

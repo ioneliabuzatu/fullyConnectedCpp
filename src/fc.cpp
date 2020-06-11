@@ -2,8 +2,23 @@
 #define _MODEL_HPP_
 
 #include "../include/fc.hpp"
-#include "../include/matrix.hpp"
-#include "../include/layer.hpp"
+#include <vector>
+
+void FC::feed_forward_move() {
+    for (int layer_ = 0; layer_ < this->layers.size() - 1; layer_++) {
+        Matrix *matrix_a = this->get_matrix(layer_);
+        if (layer_ != 0) {
+            matrix_a = this->get_activated_matrix(layer_);
+        }
+        Matrix *matrix_b = this->get_weighted_matrices(layer_);
+        Matrix *matrix_c = (new utils::Matrix_multiplication(matrix_a, matrix_b))->execute();
+
+        for (int matrix_c_index = 0; matrix_c_index < matrix_c->get_num_cols(); matrix_c_index++) {
+            this->set_neuron_value(layer_ + 1, matrix_c_index, matrix_c->get_value(0, matrix_c_index));
+        }
+    }
+
+}
 
 void FC::set_input(vector<double> input) {
     this->input = input;

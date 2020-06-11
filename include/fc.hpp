@@ -5,6 +5,7 @@
 #include <vector>
 #include "matrix.hpp"
 #include "layer.hpp"
+#include "utils/matrix_multiplication.hpp"
 
 using namespace std;
 
@@ -13,10 +14,8 @@ public:
     FC(vector<int> architecture);
 
     void set_input(vector<double> input);
-
-    void print_model_to_stdout();
-
     void feed_forward_move();
+    void print_model_to_stdout();
 
     Matrix *get_matrix(int index_) { return this->layers.at(index_)->flatten_matrix_values(); };
 
@@ -24,6 +23,11 @@ public:
 
     Matrix *get_derived_matrix(int index_) { return this->layers.at(index_)->flatten_matrix_derivative_values(); };
 
+    Matrix *get_weighted_matrices(int layer_index) { return this->weighted_matrices.at(layer_index); };
+
+    void set_neuron_value(int layer_index, int neuron_index, double value) {
+        this->layers.at(layer_index)->set_value(neuron_index, value);
+    };
 
 private:
 
