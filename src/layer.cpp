@@ -4,22 +4,25 @@
 Matrix *Layer::flatten_matrix_values() {
     Matrix *matrix_ = new Matrix(1, this->neurons.size());
     for (int neuron_ = 0; neuron_ < neurons.size(); neuron_++) {
-        matrix_->set_value(1, neuron_, this->neurons.at(neuron_)->get_value());
+        matrix_->set_value(0, neuron_, this->neurons.at(neuron_)->get_value());
     }
+    return matrix_;
 }
 
 Matrix *Layer::flatten_matrix_activated_values() {
     Matrix *matrix_ = new Matrix(1, this->neurons.size());
     for (int neuron_ = 0; neuron_ < neurons.size(); neuron_++) {
-        matrix_->set_value(1, neuron_, this->neurons.at(neuron_)->get_activated_value());
+        matrix_->set_value(0, neuron_, this->neurons.at(neuron_)->get_activated_value());
     }
+    return matrix_;
 }
 
 Matrix *Layer::flatten_matrix_derivative_values() {
     Matrix *matrix_ = new Matrix(1, this->neurons.size());
     for (int neuron_ = 0; neuron_ < neurons.size(); neuron_++) {
-        matrix_->set_value(1, neuron_, this->neurons.at(neuron_)->get_derivative_activated_value());
+        matrix_->set_value(0, neuron_, this->neurons.at(neuron_)->get_derivative_activated_value());
     }
+    return matrix_;
 }
 
 
