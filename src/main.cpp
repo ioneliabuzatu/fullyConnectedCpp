@@ -20,7 +20,6 @@ int main(int argc, char **argv) {
     Matrix *matrix_traspose = matrix->transpose_matrix();
     matrix_traspose->print_matrix_to_stdout();
 
-
     cout << "\n_____ Building model _____" << endl;
     vector<int> architecture;
     architecture.push_back(3);
@@ -41,10 +40,12 @@ int main(int argc, char **argv) {
     cout << "\n----- Model after first forward pass -------" << endl;
     model->print_model_to_stdout();
     cout << "Total Error: " << model->get_total_error() << endl;
-    for(int error = 0;error<model->get_errors().size();error++) {
+    for (int error = 0; error < model->get_errors().size(); error++) {
         cout << "Errors: " << model->get_errors().at(error) << " ";
     }
     cout << endl;
+
+    model->back_propagation_move();
 
     return 0;
 }

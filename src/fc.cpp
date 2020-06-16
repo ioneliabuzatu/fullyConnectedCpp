@@ -4,6 +4,43 @@
 #include "../include/fc.hpp"
 #include <vector>
 
+void FC::back_propagation_move() {
+    vector<Matrix *> new_weights_back_propagated;
+
+    int output_layer_index = this->layers.size() - 1;
+    Matrix *derivative_matrix = this->layers.at(output_layer_index)->flatten_matrix_derivative_values();
+    Matrix *_gradients_matrix_ = new Matrix(1, this->layers.at(output_layer_index)->get_neurons().size());
+    for (int error_ = 0; error_ < this->errors.size(); error_++) {
+        double derivative_ = derivative_matrix->get_value(0, error_);
+        double error = this->errors.at(error_);
+        double gradient = derivative_ * error;
+        _gradients_matrix_->set_value(0, error_, gradient);
+    }
+    int last_hidden_layer_index = output_layer_index - 1;
+    Layer *last_hidden_layer = this->layers.at(last_hidden_layer_index);
+    Matrix *weights_outputs_to_hidden = this->weighted_matrices.at(last_hidden_layer_index);
+    Matrix *delta_output_to_hidden = (new utils::Matrix_multiplication(
+            _gradients_matrix_->transpose_matrix(),
+            last_hidden_layer->flatten_matrix_activated_values())
+    )->execute()->transpose_matrix();
+
+    Matrix *new_weights_output_to_hidden = new Matrix(delta_output_to_hidden->get_num_rows(),
+                                                      delta_output_to_hidden->get_num_cols());
+
+    for (int __row__ = 0; __row__ < delta_output_to_hidden->get_num_rows(); __row__++) {
+        for (int __col__ = 0; __col__ < delta_output_to_hidden->get_num_cols(); __col__++) {
+            double original_weight = weights_outputs_to_hidden->get_value(__row__, __col__);
+            double delta_weight = delta_output_to_hidden->get_value(__row__, __col__);
+            new_weights_output_to_hidden->set_value(__row__, __col__, (original_weight - delta_weight));
+        }
+    }
+    new_weights_back_propagated.push_back(new_weights_output_to_hidden);
+
+    cout << "\nNew weights: from output to hidden" << endl;
+    new_weights_output_to_hidden->print_matrix_to_stdout();
+}
+
+
 void FC::set_errors() {
     if (this->target.size() == 0) {
         cerr << "No targets" << endl;

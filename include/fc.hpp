@@ -18,6 +18,8 @@ public:
 
     void feed_forward_move();
 
+    void back_propagation_move();
+
     void print_model_to_stdout();
 
     void set_errors();
@@ -44,6 +46,7 @@ private:
     int architecture_size;
     vector<Layer *> layers;
     vector<Matrix *> weighted_matrices;
+    vector<Matrix *> gradient_matrix;
     vector<double> input;
     vector<double> target;
     double total_error;
